@@ -30,7 +30,8 @@ gulp.task('browser-sync', function () {
 gulp.task('scripts', function () {
     return gulp.src([
         'src/libs/jquery/dist/jquery.min.js',
-        'src/libs/bootstrap/dist/js/bootstrap.min.js'
+        'src/libs/bootstrap/dist/js/bootstrap.min.js',
+        'src/libs/jquery.bxslider/jquery.bxslider.min.js'
         ])
         .pipe(concat('libs.min.js'))
         .pipe(uglify())

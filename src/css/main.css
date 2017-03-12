@@ -16,6 +16,9 @@
   font-weight: bold;
   src: url(../fonts/Montserrat-bold.ttf); }
 
+body {
+  position: relative; }
+
 .container {
   width: 960px; }
 
@@ -59,10 +62,13 @@ header {
   margin: 10px 0; }
   header img {
     padding-top: 5px; }
+  header .container {
+    position: relative; }
 
 #header__nav {
   display: inline-block;
-  float: right; }
+  float: right;
+  background: #fff; }
   #header__nav a {
     color: #999999;
     font-size: 13px; }
@@ -87,4 +93,93 @@ h1 {
     display: inline-block;
     position: absolute;
     top: 20px;
-    left: 223px; }
+    left: 386px; }
+
+#work {
+  background: #3f3b48;
+  color: #fefefe; }
+  #work h2 {
+    position: relative;
+    font-size: 52px; }
+    #work h2 span {
+      font-size: 104px; }
+    #work h2 img {
+      position: absolute;
+      top: 10px;
+      left: 500px; }
+
+.work-slider__item {
+  background: url("../img/work__phone.png") center -120px no-repeat;
+  padding-top: 100px;
+  padding-bottom: 140px; }
+  .work-slider__item h3 {
+    font-size: 18px; }
+  .work-slider__item p {
+    font-size: 12px;
+    width: 330px;
+    font-family: Arial, sans-serif;
+    line-height: 20px; }
+  .work-slider__item li {
+    font-size: 14px;
+    font-family: Montserrat, sans-serif;
+    padding-bottom: 8px; }
+
+.work__technologies table {
+  border-collapse: separate;
+  border-spacing: 1px;
+  margin-top: 20px;
+  margin-bottom: 40px; }
+
+.work__technologies td {
+  padding: 0;
+  background: #635f6d;
+  width: 80px;
+  height: 100px;
+  text-align: center;
+  font-family: Montserrat,sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 24px; }
+  .work__technologies td:first-child {
+    -webkit-border-top-left-radius: 5px;
+            border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+            border-bottom-left-radius: 5px; }
+  .work__technologies td:last-child {
+    -webkit-border-top-right-radius: 5px;
+            border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+            border-bottom-right-radius: 5px; }
+  .work__technologies td i {
+    font-size: 40px; }
+
+.work__technologies a {
+  color: #fefefe;
+  text-decoration: none; }
+
+.work__paginator {
+  font-family: Montserrat, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  background: url("../img/work__paginator.png") center no-repeat;
+  width: 400px;
+  height: 64px;
+  line-height: 58px; }
+  .work__paginator span {
+    display: inline-block; }
+  .work__paginator a {
+    color: #333333;
+    text-decoration: none; }
+
+#work__prev {
+  padding: 0 15px; }
+
+#work__next {
+  padding: 0 30px; }
+
+#work__counter {
+  display: inline-block;
+  padding: 0 15px 0 15px; }
+
+#work__current {
+  font-size: 18px; }
