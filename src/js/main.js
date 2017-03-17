@@ -4,8 +4,8 @@
 $(document).ready(function () {
 
     /*
-    * Анимация для первого слайдера
-    * */
+     * Анимация для первого слайдера
+     * */
 
     var $workItems = $('.work-slider__item');
 
@@ -14,6 +14,8 @@ $(document).ready(function () {
     var $workSlider = $('.work-slider');
 
     var numberOfWorks = $workItems.length;
+
+    var containerWidth = 960;
 
     jQuery.fn.twoDigitText = function (number) {
         if (number <= 0) {
@@ -32,8 +34,9 @@ $(document).ready(function () {
     var moveSlider = function () {
         var currentWork = parseInt($('#work__number').text());
         $('.work-slider').animate({
-                'left': -((currentWork -1) * 960
-            )},500);
+            'left': -((currentWork - 1) * 960
+            )
+        }, 500);
     };
 
     $('.work__paginator').removeClass('hidden');
@@ -86,6 +89,48 @@ $(document).ready(function () {
         moveSlider()
     });
     /*
-    * Конец анимации для первого слайдера
-    * */
+     * Конец анимации для первого слайдера
+     * */
+
+    /*
+     * Второй слайдер
+     * */
+
+    var $blogItems = $('.blog-item'),
+        blogItemsQuantity = $blogItems.length,
+        $blogSlider = $('.blog-slider'),
+        blogRowWidth = (blogItemsQuantity * 400),
+        $blogSliderCaret = $('.blog-slider__caret');
+
+    $blogItems.removeClass('hidden');
+
+    $blogSlider.removeClass('hidden');
+
+    $('.blog-row').css('width', blogRowWidth);
+
+    $blogSliderCaret.width(940 / (blogRowWidth / containerWidth));
+
+    $blogSliderCaret.on('mousedown', function (event) {
+        var $this = $(this);
+        var posParent;
+        var startPos;
+        var thisPos;
+        thisPos = $this.offset();
+        posParent = $blogSlider.offset();
+        startPos = event.pageX - thisPos.left;
+        $(document).mousemove(function (event1) {
+            var currentPos = event1.pageX - posParent.left - startPos;
+            if(currentPos < 0){
+                $this.css({'left': 0})
+            } else if ((currentPos + $this.width()) > $blogSlider.width()){
+                $this.css({'left': ($blogSlider.width() - $this.width())});
+            }else{
+                $this.css({'left': (currentPos)});
+            }
+        });
+    });
+    $(document).mouseup(function () {
+        $(document).off('mousemove')
+    });
+
 });

@@ -225,6 +225,9 @@ h1
 #blog
   background: #3f3b48
   color: #fff
+  .row
+    overflow: hidden
+    height: 600px
   h2
     font-size: 52px
     position: relative
@@ -235,11 +238,18 @@ h1
       top: 10px
       left: 300px
 
+.blog-row
+  height: 450px
+
 .blog-item
   background: #595466
   display: inline-block
   padding: 20px
   width: 340px
+  height: 450px
+  position: relative
+  margin: 0 30px
+  float: left
   h4, h3, a
     padding: 10px
   h4
@@ -254,11 +264,63 @@ h1
     i
       vertical-align: bottom
       line-height: 16px
+  &__date
+    position: absolute
+    display: inline-block
+    font-family: Montserrat, sans-serif
+    font-size: 38px
+    color: #3f3b48
+    width: 75px
+    height: 80px
+    background: #fff
+    top: 206px
+    left: 245px
+    border-radius: 4px
+    padding-top: 5px
+  &__month
+    display: inline-block
+    background: #3f3b48
+    color: #fff
+    width: 75px
+    font-size: 11px
+    position: absolute
+    bottom: 0
+    left: 0
+    font-family: inherit
+    border-bottom-left-radius: 3px
+    border-bottom-right-radius: 3px
 
-.blog__slider
-  height: 30px
-  margin-top: 50px
-  margin-bottom: 90px
+.blog-slider
+  position: relative
+  height: 8px
+  background: #2f2c36
+  border-style: inset
+  border-color: #534f5b
+  border-width: 1px
+  margin-top: 70px
+  margin-right: 10px
+  margin-left: 10px
+  &__caret
+    background: #FFF
+    position: absolute
+    width: 88px
+    height: 26px
+    top: -9px
+    left: 0
+    border-radius: 4px
+    &-left
+      background: url("../img/blog-slider__caret-left.png") center no-repeat
+      position: absolute
+      left: 10px
+      height: 26px
+      width: 28px
+    &-right
+      background: url("../img/blog-slider__caret-right.png") center no-repeat
+      position: absolute
+      right: 10px
+      height: 26px
+      width: 28px
+
 
 #facts
   position: relative
