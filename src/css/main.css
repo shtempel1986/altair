@@ -61,6 +61,9 @@ a, h3, h4, h5, h6 {
     top: 7px;
     left: 8px; }
 
+.clickable {
+  cursor: pointer; }
+
 header {
   margin: 10px 0; }
   header img {
@@ -100,7 +103,8 @@ h1 {
 
 #work {
   background: #3f3b48;
-  color: #fefefe; }
+  color: #fefefe;
+  padding-bottom: 90px; }
   #work h2 {
     position: relative;
     font-size: 52px; }
@@ -114,7 +118,8 @@ h1 {
 .work-slider__item {
   background: url("../img/work__phone.png") center -120px no-repeat;
   padding-top: 100px;
-  padding-bottom: 140px; }
+  padding-bottom: 140px;
+  height: 540px; }
   .work-slider__item h3 {
     font-size: 18px; }
   .work-slider__item p {
@@ -170,7 +175,9 @@ h1 {
   line-height: 58px; }
   .work__paginator span {
     display: inline-block; }
-  .work__paginator a {
+  .work__paginator #work__prev, .work__paginator #work__next {
+    text-transform: uppercase;
+    font-family: Montserrat,sans-serif;
     color: #333333;
     text-decoration: none; }
 
