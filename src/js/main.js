@@ -67,7 +67,7 @@ $(document).ready(function () {
         $workItems.width(960);
     }
 
-    $('#work__next').click(function () {
+    $('#work__next').click(function () {//TODO: Не работает клик на телефоне
         var currentWork = parseInt($('#work__number').text());
         if (currentWork == numberOfWorks) {
             currentWork = 1;
@@ -100,17 +100,37 @@ $(document).ready(function () {
         blogItemsQuantity = $blogItems.length,
         $blogSlider = $('.blog-slider'),
         blogRowWidth = (blogItemsQuantity * 400),
-        $blogSliderCaret = $('.blog-slider__caret');
+        $blogSliderCaret = $('.blog-slider__caret'),
+        $blogRowWindow = $('#blog .row'),
+        $blogRow = $('.blog-row'),
+        $blogRowBefore = $('<div class="blog-row__before"></div>').appendTo('#blog .row'),
+        $blogRowAfter = $('<div class="blog-row__after"></div>').appendTo('#blog .row'),
+        blogRowMarginsWidth;
+
+    blogRowMarginsWidth = ($(window).width() - $blogRowWindow.width())/2;
+
+    $blogRowBefore.width(blogRowMarginsWidth).css('left', -blogRowMarginsWidth);
+    $blogRowAfter.width(blogRowMarginsWidth).css('right', -blogRowMarginsWidth);
+
+    $blogRowWindow.css('overflow', 'visible');
 
     $blogItems.removeClass('hidden');
 
     $blogSlider.removeClass('hidden');
 
-    $('.blog-row').css('width', blogRowWidth);
+    $blogRow.css('width', blogRowWidth);
 
     $blogSliderCaret.width(940 / (blogRowWidth / containerWidth));
 
-    $blogSliderCaret.on('mousedown', function (event) {
+    if(windowWidth < 991){
+        $blogSliderCaret.width(720 / (blogRowWidth / containerWidth));
+        $blogSlider.width(720);
+    } else {
+        $blogSlider.width(940);
+        $blogSliderCaret.width(940 / (blogRowWidth / containerWidth));
+    }
+
+    $blogSliderCaret.on('mousedown', function (event) {//TODO: отменить выделение текста при пермещении курсора
         var $this = $(this);
         var posParent;
         var startPos;
@@ -127,6 +147,8 @@ $(document).ready(function () {
             }else{
                 $this.css({'left': (currentPos)});
             }
+            var blogRowPos = (parseInt($this.css('left'))/$blogSlider.width())*$blogRow.width();
+            $blogRow.css('left', -blogRowPos);
         });
     });
     $(document).mouseup(function () {
