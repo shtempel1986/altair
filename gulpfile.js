@@ -39,16 +39,31 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('css-libs', ['sass'], function () {
-    return gulp.src('src/css/libs.css')
+    return gulp.src(['src/css/libs.css', "src/css/main.css"])
         .pipe(cssnano())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('src/css'));
 });
 
-gulp.task('watch', ['browser-sync', 'css-libs', 'scripts'], function () {
-    gulp.watch('src/sass/**/*.sass', ['sass']);
+gulp.task('css-nano', ["sass"], function () {
+    return gulp.src("src/css/main.css")
+        .pipe(cssnano())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('src/css'));
+});
+
+gulp.task("js-minify", function () {
+    return gulp.src("src/js/main.js")
+        .pipe(uglify())
+        .pipe(rename({suffix: ".min"}))
+        .pipe(gulp.dest("src/js"));
+});
+
+gulp.task('watch', ['browser-sync', 'css-nano', 'scripts', "js-minify", "css-libs"], function () {
+    gulp.watch('src/sass/**/*.sass', ['sass', "css-nano", browserSync.reload]);
     gulp.watch('src/*html', browserSync.reload);
-    gulp.watch('src/js/**/*.js', browserSync.reload);
+    gulp.watch('src/js/**/*.js', ["js-minify", browserSync.reload]);
+    gulp.watch("src/sass/libs.sass", ["css-libs"]);
 });
 
 gulp.task('clean', function () {
@@ -68,8 +83,8 @@ gulp.task('img', function () {
 
 gulp.task('build', ['clean', 'img', 'sass', 'scripts'], function () {
     var buildCss = gulp.src([
-        'src/css/main.css',
-        'src/scc/libs.min.css'
+        'src/css/main.min.css',
+        'src/css/libs.min.css'
     ]).pipe(gulp.dest('dist/css'));
     var buildFonts = gulp.src('src/fonts/**/*')
         .pipe(gulp.dest('dist/fonts'));
